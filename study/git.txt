@@ -1,0 +1,15 @@
+Git 命令
+1 git add 添加修改文件
+2 git commit -m "备注"  进行提交且添加备注内容
+3 git status 查看状态（可以看到哪些文件被修改、新增）
+4 git diff filename 文件对比（查看文件具体修改了哪些内容）
+5 git log 查看日志记录（会有作者、时间等信息）
+6 git log --pretty=oneline 查看日志记录（一行显示，只显示版本号和备注内容）
+7 git reset --hard HEAD^ 回退上一个版本
+  (依次类型，上上个 HEAD^^，HEAD^^^, …… 上7个, HEAD~7)
+  也可以git reset --hard 版本号(sha字符串)
+  如果只查看具体某个文件的版本记录呢？
+8 git reflog 查看所有操作记录（包括回滚的版本git log看不到回滚版本记录）
+
+
+git add 命令是将工作区修改的内容放到暂存区(stage)，然后执行git commit就是将暂存区的修改提交到分支
