@@ -1,0 +1,1 @@
+1 v-once 和 Object.freeze()用法与区别，适合什么场景

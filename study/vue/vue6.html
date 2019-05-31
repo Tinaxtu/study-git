@@ -1,0 +1,78 @@
+<!DOCTYPE>
+<html>
+<head>
+    <title>Vue</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <p>Original message : {{message}}</p>
+    <!--vue1是通过点击methods实现的-->
+    <!--类似于PHP类里面找不到属性reverseMessage，则调用__get()魔术方法，这里则是在computed里面找方法-->
+    <p>Computed reversed message:"{{reverseMessage}}"</p>
+</div>
+
+<div id="app1">
+    <p>Original message : {{message}}</p>
+    <!--这里是调用方法注意大括号()!!!-->
+    <p>Reversed message:{{reverseMessage()}}</p>
+</div>
+
+<!--两者区别如下：computed有缓存效果，只要message不改变，则reverseMessage也不会改变，举例如下：-->
+<div id="app2">
+    <div>Current Time:{{now}}</div><!--在页面调用app2.now看到属性值不会改变，缓存效果-->
+</div>
+
+<div id="app3">
+    <div>Current Time:{{now()}}</div>
+</div>
+
+</body>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            message: "这个不会改变哦"
+        },
+        computed:{
+            reverseMessage:function(){
+                return this.message.split("").reverse().join("");
+            }
+        }
+    });
+    
+    var app1 = new Vue({
+        el: "#app1",
+        data: {
+            message: "这个不会改变哦"
+        },
+        methods:{
+            reverseMessage:function(){
+                return this.message.split("").reverse().join("");
+            }
+        }
+    });
+
+    var app2 = new Vue({
+        el: "#app2",
+        computed:{
+            now:function(){
+                return Date.now();
+            }
+        }
+    });
+
+    var app3 = new Vue({
+        el: "#app3",
+        methods:{
+            now:function(){
+                return Date.now();
+            }
+        }
+    });
+
+
+</script>
+</html>

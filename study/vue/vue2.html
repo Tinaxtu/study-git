@@ -1,0 +1,49 @@
+<!DOCTYPE>
+<html>
+<head>
+    <title>Vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app-7">
+    <ol>
+       <!--创建组件实例-->
+       <todo-item></todo-item> 
+    </ol>
+</div>
+
+<div id="app-8">
+    <ol>
+       <todo-item-2 v-for="item in groceryList" v-bind:todo="item" v-bind:key="item.id"></todo-item-2> 
+    </ol>
+</div>
+
+</body>
+<script>
+    // 注册组件
+    Vue.component("todo-item", {
+        template: "<li>注册组件</li>"
+    });
+    // 需要进行实例化进行渲染，才能显示
+    var app7 = new Vue({
+        el: '#app-7',
+    });
+
+    // todo-item-2组件现在接收一个“props”,类似于一个自定义特性,这个 prop 名为 todo
+    Vue.component("todo-item-2",{
+        props:["todo"],
+        template: "<li>{{todo.text}}</li>"
+    });
+    var app8 = new Vue({
+        el: '#app-8',
+        data:{
+            groceryList:[
+                {id: 1, text: "apple"},
+                {id: 3, text: "banana"},
+                {id: 2, text: "peach"},
+            ]
+        }
+    });
+</script>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE>
+<html>
+<head>
+    <title>Vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <p>{{foo}}</p>
+    <!--点击时会js报错，foo变量只可读，不可修改-->
+    <button v-on:click="foo = 'update'">Change it.</button>
+</div>
+
+</body>
+<script>
+    // 数据对象
+    var data = {id:1}  // 可以放初始化数据
+    // 将数据对象加入到一个Vue实例中
+    var vm = new Vue({
+        data: data
+    });
+    data.id == vm.id;   // ture
+
+    vm.id = 2;  // 会发现 data.id此时也变为2，反之亦然  
+    // !!!重点说明：只有当实例被创建时data中存在的属性才是响应式的
+
+    // 如果使用Object.freeze()这会阻止修改现有的属性，也意味着响应系统无法再追踪变化
+
+    var obj = {
+        foo : "bar"
+    }
+    Object.freeze(obj);  //这个的意思将变量设置为可读模式，不可更改
+
+    new Vue({
+        el: "#app",
+        data: obj
+    });
+    // 此时用data.foo = "update"; 发现foo值已经无法修改
+
+</script>
+</html>

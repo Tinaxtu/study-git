@@ -1,0 +1,28 @@
+<!DOCTYPE>
+<html>
+<head>
+    <title>Vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    
+</div>
+
+</body>
+<script>
+    // 钩子created、mounted、updated、destroyed
+
+    // created钩子可以用来在一个实例被创建之后执行代码
+    new Vue({
+        data: {
+            a: 1
+        },
+        created: function(){
+            console.log("a is " + this.a);
+        }
+    });
+
+</script>
+</html>
