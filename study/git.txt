@@ -17,7 +17,15 @@ git config --global user.email "tina.xtu@gmail.com"
 （1）工作区撤销：git checkout -- <file>
 （2）暂存区撤销：git reset HEAD <file>
 11 git rm <file>删除文件
+12 git remote add origin gitUrl(把本地的仓库与之关联,gitUrl仓库地址)
+13 git push -u origin master(开始推送，把当前master分支推送到远程)（后面提交则可以不用-u 参数 也就是 git push origin master）
+14 git clone gitUrl(远程拉取数据)
 
-说明：
+
+查看当前用户的信息
+git config user.name
+git config user.email
+
+说明：ssh-keygen -t rsa -C "user.email"
 (1)git add 命令是将工作区修改的内容放到暂存区(stage)，然后执行git commit就是将暂存区的修改提交到分支，如果没有用git add 命令将filename加入到stage缓存区中，则不会被加入到commit中
 (2)git reset 命令既可以回退版本，也可以把暂存区的修改回退到工作区，当使用HEAD时，表示最新的版本

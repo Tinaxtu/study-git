@@ -11,5 +11,7 @@ vue3.html
 vue4.html
 5 模板语法(文本、原始html、特性)
 vue5.html
-6 计算属性和侦听器
+6 计算属性
 vue6.html
+7 侦听器
+vue7.html

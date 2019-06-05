@@ -29,6 +29,10 @@
     <div>Current Time:{{now()}}</div>
 </div>
 
+<div id="app4">
+    <div>My full name:{{fullName}}</div>
+</div>
+
 </body>
 <script>
     var app = new Vue({
@@ -73,6 +77,28 @@
         }
     });
 
+    // getter和setter用法
+    var app4 = new Vue({
+        el : "#app4",
+        data:{
+            firstName:"Tina",
+            lastName:"He"
+        },
+        computed:{
+            fullName:{
+                //getter
+                get:function(){
+                    return this.firstName + " " + this.lastName; 
+                },
+                //setter
+                set:function(newVal){
+                    var names = newVal.split(" ");
+                    firstName = names[0];
+                    lastName  = names[names.length-1];
+                }
+            }
+        }
+    });
 
 </script>
 </html>
