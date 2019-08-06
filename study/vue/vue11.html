@@ -1,0 +1,71 @@
+<!DOCTYPE>
+<html>
+<head>
+    <title>Vue</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="https://cn.vuejs.org/js/vue.js"></script>
+</head>
+<body>
+
+<div id="forExample1">
+    <ul>
+        <li v-for="item in items">{{item.fruit}}</li>
+    </ul>
+</div>
+
+<div id="forExample2">
+    <ul>
+        <li v-for="(item, index) in items">{{index}} - {{item.fruit}}</li>
+    </ul>
+</div>
+
+<div id="forExample3">
+    <ul>
+        <li v-for="value in object">{{value}}</li>
+    </ul>
+    <ul>
+        <li v-for="(value,name) in object">{{name}} - {{value}}</li>
+    </ul>
+    <ul>
+        <li v-for="(value, name, index) in object">{{index}} - {{name}} - {{value}}</li>
+    </ul>
+</div>
+
+</body>
+<script>
+    var forExample1 = new Vue({
+        el: '#forExample1',
+        data: {
+            items: [
+                {fruit: 'apple'},
+                {fruit: 'watermelon'},
+                {fruit: 'strawberry'}
+            ]
+        }
+    });
+
+    var forExample2 = new Vue({
+        el: '#forExample2',
+        data: {
+            items: [
+                {fruit: 'apple'},
+                {fruit: 'watermelon'},
+                {fruit: 'strawberry'}
+            ]
+        }
+    });
+    // for 遍历对象
+    var forExample3 = new Vue({
+        el: '#forExample3',
+        data: {
+            object:{
+                title: 'how to do lists in vue',
+                author: 'Tina',
+                publishedAt: '2019-04-10'
+            }
+        }
+    });
+
+
+</script>
+</html>

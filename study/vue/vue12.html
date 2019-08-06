@@ -1,0 +1,73 @@
+<!DOCTYPE>
+<html>
+<head>
+    <title>Vue</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="https://cn.vuejs.org/js/vue.js"></script>
+</head>
+<body>
+
+<div id="arrayExample1">
+    <ul>
+        <li v-for="item in items">{{item.fruit}}</li>
+    </ul>
+</div>
+
+<div id="arrayExample2">
+    <ul>
+        <li v-for="item in getFruit">{{item.fruit}}</li>
+    </ul>
+</div>
+
+
+</body>
+<script>
+    // 1变异方法(mutation method)(可触发视图更新)
+    /*
+     push()
+     pop()
+     shift()
+     unshift()
+     splice()
+     sort()
+     reverse()
+     */
+    var arrayExample1 = new Vue({
+        el: '#arrayExample1',
+        data: {
+            items: [
+                {fruit: 'apple'},
+                {fruit: 'watermelon'},
+                {fruit: 'strawberry'}
+            ]
+        }
+    });
+    // 触发eg:
+    // arrayExample1.items.push({fruit:'banana'});
+
+    // 2数组替换
+    /* 
+     filter()
+     concat()
+     slice()
+     */
+    var arrayExample2 = new Vue({
+        el: '#arrayExample2',
+        data: {
+            items: [
+                {fruit: 'apple'},
+                {fruit: 'appwatermelon'},
+                {fruit: 'strawberry'}
+            ]
+        },
+        computed: {
+            getFruit: function(){
+                this.items = this.items.filter(function(item){
+                    return item.fruit.match(/apple/);
+                })
+            }
+        }
+    });
+
+</script>
+</html>

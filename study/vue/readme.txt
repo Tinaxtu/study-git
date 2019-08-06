@@ -15,3 +15,13 @@ vue5.html
 vue6.html
 7 侦听器
 vue7.html
+8 class属性
+vue8.html
+9 style属性
+vue9.html
+10 条件渲染
+vue10.html
+11 循环
+vue11.html
+12 数组
+vue12.html

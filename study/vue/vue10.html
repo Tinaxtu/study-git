@@ -1,0 +1,62 @@
+<!DOCTYPE>
+<html>
+<head>
+    <title>Vue</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="https://cn.vuejs.org/js/vue.js"></script>
+</head>
+<body>
+
+<div id="ifExample1">
+    <div v-if="awesome1">Hello</div>
+    <div v-else-if="awesome2">World</div>
+    <div v-else>!</div>
+</div>
+<div id="ifExample2">
+    <template v-if="loginType === 'username'">
+        <label>Username</label>
+        <input type="" name="" placeholder="Enter your username" key="username-input">
+    </template>
+    <template v-else-if="loginType === 'email'">
+        <label>Email</label>
+        <input type="" name="" placeholder="Enter your email" key="email-input">
+    </template>
+    <template v-else>
+        <label>Else</label>
+        <input type="" name="" placeholder="Enter your ……">
+    </template>
+</div>
+
+<div id="ifExample3">
+    <div v-show="showDiv">Hello Div</div>
+</div>
+<!-- 
+v-if有更高的切换开销，而v-show有更高的初始渲染开销，因此，如果需要非常频繁的切换，则使用v-show较好；如果在运行时条件很少改变，则使用v-if较好
+ -->
+
+</body>
+<script>
+    var ifExample1 = new Vue({
+        el: '#ifExample1',
+        data: {
+            awesome1: true,
+            awesome2: false
+        }
+    });
+
+    var ifExample2 = new Vue({
+        el: '#ifExample2',
+        data: {
+            loginType: 'username'
+        }
+    });
+
+    var ifExample3 = new Vue({
+        el: '#ifExample3',
+        data: {
+            showDiv: true
+        }
+    });
+
+</script>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE>
+<html>
+<head>
+    <title>Vue</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="https://cn.vuejs.org/js/vue.js"></script>
+</head>
+<body>
+
+<div id="class-example1">
+    <div v-bind:class="{active: isActive, 'text-danger': hasError}" class="original">hello</div>
+</div>
+
+<div id="class-example2">
+    <div v-bind:class="classObject">hello</div>
+</div>
+
+<div id="class-example3">
+    <div v-bind:class="classObject">hello</div>
+</div>
+
+<div id="class-example4">
+    <div v-bind:class="[activeClass, errorClass]">hello</div>
+</div>
+    
+</body>
+<script>
+    var classExample1 = new Vue({
+        el: '#class-example1',
+        data: {
+            isActive: true,
+            hasError: false
+        }
+    });
+
+    var classExample2 = new Vue({
+        el: '#class-example2',
+        data: {
+            classObject: {
+                active: true,
+                'text-danger': false,
+                original: true,
+            }
+        }
+    });
+    // 计算属性
+    var classExample3 = new Vue({
+        el: '#class-example3',
+        data: {
+            isActive: true,
+            error: null
+        },
+        computed: {
+            classObject: function(){
+                return {
+                    active: this.isActive && !this.error,
+                    'text-danger': this.error && this.error.type === 'fatal'
+                }
+            }
+        }
+    });
+    // 数组形式
+    var classExample4 = new Vue({
+        el: '#class-example4',
+        data: {
+            activeClass: 'active',
+            errorClass: 'text-danger'
+        }
+    });
+</script>
+</html>

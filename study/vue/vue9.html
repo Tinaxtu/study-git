@@ -1,0 +1,52 @@
+<!DOCTYPE>
+<html>
+<head>
+    <title>Vue</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="https://cn.vuejs.org/js/vue.js"></script>
+</head>
+<body>
+
+<div id="styleExample1">
+    <div v-bind:style="{color: activeColor, fontSize: fontSize+'px'}">hello</div>
+</div>
+
+<div id="styleExample2">
+    <div v-bind:style="styleObject">hello</div>
+</div>
+
+<div id="styleExample3">
+    <div v-bind:style="[baseStyle, overridingStyle]">hello</div>
+</div>
+    
+</body>
+<script>
+    var styleExample1 = new Vue({
+        el: '#styleExample1',
+        data: {
+            activeColor: 'blue',
+            fontSize: 18
+        }
+    });
+    //对象形式
+    var styleExample2 = new Vue({
+        el: '#styleExample2',
+        data: {
+            styleObject:{
+                color: 'blue',
+                fontSize: '18px'
+            }
+        }
+    });
+    //数组形式
+    var styleExample3 = new Vue({
+        el: '#styleExample3',
+        data: {
+            baseStyle: 'color:blue',
+            overridingStyle: 'fontSize:18px'
+        }
+    });
+    
+
+</script>
+</html>
