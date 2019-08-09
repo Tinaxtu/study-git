@@ -3,7 +3,8 @@
 <head>
     <title>Vue</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <script src="https://cn.vuejs.org/js/vue.js"></script>
+    <!-- <script src="https://cn.vuejs.org/js/vue.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
 
@@ -15,7 +16,27 @@
 
 <div id="arrayExample2">
     <ul>
-        <li v-for="item in getFruit">{{item.fruit}}</li>
+        <li v-for="item in appleFruit">{{item.fruit}}</li>
+        <!--拒绝如下写法-->
+        <!-- <li v-if="item.fruit=='apple'" v-for="item in items">{{item.fruit}}</li> -->
+    </ul>
+</div>
+
+<div id="arrayExample3">
+    <ul>
+        <li v-for="item in items">{{item.fruit}}</li>
+    </ul>
+</div>
+
+<div id="arrayExample4">
+    <ul>
+        <li v-for="item in items">{{item.fruit}}</li>
+    </ul>
+</div>
+
+<div id="arrayExample5">
+    <ul>
+        <li v-for="item in items">{{item}}</li>
     </ul>
 </div>
 
@@ -45,29 +66,121 @@
     // 触发eg:
     // arrayExample1.items.push({fruit:'banana'});
 
-    // 2数组替换
+    // 2 避免v-if和v-for混合写法!!!
+    var arrayExample2 = new Vue({
+        el: '#arrayExample2',
+        data: {
+            items: [
+                {fruit: 'apple'},
+                {fruit: 'watermelon'},
+                {fruit: 'strawberry'}
+            ]
+        },
+        computed:{
+            appleFruit: function(){
+                return this.items.filter(function(item){
+                    return item.fruit.match(/apple/);
+                });
+            }
+         }
+    });
+    // 说明：
+    /*
+     v-for比v-if具有更高的优先级，所以会经过如下运算：
+     this.items.map(function(item){
+        if(item.fruit == 'apple'){
+            return item.fruit;
+        }
+     });
+     因此哪怕只渲染一小部分用户的元素，也得在每次重新渲染的时候遍历整个列表
+     可优化如下：
+     computed:{
+        appleFruit: function(){
+            return this.items.filter(function(item){
+                return item.fruit.match(/apple/);
+            });
+        }
+     }
+     */
+
+    // 3数组替换（过滤）
     /* 
      filter()
      concat()
      slice()
      */
-    var arrayExample2 = new Vue({
-        el: '#arrayExample2',
+    
+    var arrayExample3 = new Vue({
+        el: '#arrayExample3',
         data: {
             items: [
                 {fruit: 'apple'},
                 {fruit: 'appwatermelon'},
                 {fruit: 'strawberry'}
             ]
-        },
-        computed: {
-            getFruit: function(){
-                this.items = this.items.filter(function(item){
-                    return item.fruit.match(/apple/);
-                })
+        }
+    });
+    // 进行过滤处理
+    arrayExample3.items = arrayExample3.items.filter(function(item){
+        return item.fruit.match(/apple/);
+    });
+
+    // 4数组根据索引更新
+    var arrayExample4 = new Vue({
+        el: '#arrayExample4',
+        data: {
+            items: [
+                {fruit: 'apple'},
+                {fruit: 'watermelon'},
+                {fruit: 'strawberry'}
+            ]
+        }
+    });
+    // vm = new Vue({……});
+    // vm.items[2] = {fruit:'banana'};  // 不是响应式的
+    // vm.items.length = 2;  // 不是响应式的
+    // 可采用如下方法：
+    // Vue.set(vm.items, indexOfItem, newValue);  或者
+    // vm.$set(vm.items, indexOfItem, newValue);
+    // vm.items.splice(newLength);
+    Vue.set(arrayExample4.items, 1, {fruit: 'banana'});
+    arrayExample4.items.splice(2);
+
+
+    // 5 对象属性(添加与删除)
+    var arrayExample5 = new Vue({
+        el: '#arrayExample5',
+        data: {
+            items: {
+                id: 3,
+                title: 'cos',
+                count: 9
             }
         }
     });
+    //arrayExample5.items.age = 27; //非响应式 
+    //Vue.set(arrayExample5.items, 'age', 27); // 或者
+    arrayExample5.$set(arrayExample5.items, 'age', 27);
+    // 赋值多属性
+    // 方法1
+    Object.assign(arrayExample5.items, {
+        age: 27,
+        favoriteColor: 'vue red'
+    });
+    // 或_.extend()
+    // 方法2
+    arrayExample5.items = Object.assign({}, arrayExample5.items, {
+        age:27,
+        favoriteColor: 'blue'
+    });
+
+    /*方法1和方法2区别有两点：
+    (1)当arrayExample5.items为undefined时，会报错
+    (2)两种方法都改变了arrayExample5.items,但是可以理解为，第一种是将{age:27,favoriteColor:'red'}遍历一遍后添加到arrayExample5.items上面，并没有改变原来的arrayExample.items指向的地址；第二种是将arrayExample5.items和{age:27,favoriteColor:'red'}遍历后添加到这个新的{}上面，arrayExample5.items实际上指向了一个新的地址
+    */
+
+    //Object.assign(target, source);方法用于将所有可枚举属性的值从一个或多个源对象复制到目标对象。它将返回目标对象。
+
 
 </script>
 </html>

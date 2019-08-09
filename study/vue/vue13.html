@@ -1,0 +1,54 @@
+<!DOCTYPE>
+<html>
+<head>
+    <title>Vue</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!-- <script src="https://cn.vuejs.org/js/vue.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="filterExample1">
+    <ul>
+        <li v-for="item in evenNumbers">{{item}}</li>
+    </ul>
+</div>
+
+<div id="filterExample2">
+    <ul>
+        <li v-for="item in even()">{{item}}</li>
+    </ul>
+</div>
+
+</body>
+<script>
+    var filterExample1 = new Vue({
+        el: '#filterExample1',
+        data: {
+            items: [1,2,3,4,5,6,7]
+        },
+        computed: {
+            evenNumbers:function(){
+                return this.items.filter(function(item){
+                    return item%2 === 0;
+                });
+            }
+        }
+    });
+
+    var filterExample2 = new Vue({
+        el: '#filterExample2',
+        data: {
+            items: [1,2,3,4,5,6,7]
+        },
+        methods: {
+            even:function(){
+                return this.items.filter(function(item){
+                    return item%2 === 0;
+                });
+            }
+        }
+    });
+
+</script>
+</html>

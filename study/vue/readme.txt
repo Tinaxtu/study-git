@@ -23,5 +23,7 @@ vue9.html
 vue10.html
 11 循环
 vue11.html
-12 数组
+12 数组与对象
 vue12.html
+13 过滤与排序
+vue13.html
