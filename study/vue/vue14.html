@@ -1,0 +1,79 @@
+<!DOCTYPE>
+<html>
+<head>
+    <title>Vue</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!-- <script src="https://cn.vuejs.org/js/vue.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="example1">
+    <button v-on:click="count+=1">Add 1</button>
+    <p>The button above has been clicked {{count}} times.</p>
+</div>
+
+<div id="example2">
+    <button v-on:click="greet">Greet</button>
+</div>
+
+<p></p>
+
+<div id="example3">
+    <button v-on:click="say('Hi')">Say Hi</button>
+    <button v-on:click="say('Hello')">Say Hello</button>
+</div>
+
+<p></p>
+
+<div id="example4">
+    <button v-on:click="warn('Form cannot be submitted yet.', $event)">Submit</button>
+</div>
+
+</body>
+<script>
+    var example1 = new Vue({
+        el: '#example1',
+        data: {
+            count: 0
+        }
+    });
+
+    var example2 = new Vue({
+        el: '#example2',
+        data: {
+            name: 'World'
+        },
+        methods:{
+            greet: function(event){
+                alert('Hello '+this.name);
+                console.log(event);
+            }
+        }
+    });
+
+    var example3 = new Vue({
+        el: '#example3',
+        methods:{
+            say: function(message){
+                alert(message);
+            }
+        }
+    });
+
+    var example4 = new Vue({
+        el: '#example4',
+        methods:{
+            warn: function(message, event){
+                if(event) event.preventDefault();   
+                /* 
+                 event.preventDefault() => 阻止默认事件
+                 event.stopPropagation() => 阻止事件冒泡
+                 */
+                alert(message);
+            }
+        }
+    });
+
+</script>
+</html>
