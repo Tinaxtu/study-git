@@ -20,6 +20,7 @@ git config --global user.email "tina.xtu@gmail.com"
 12 git remote add origin gitUrl(把本地的仓库与之关联,gitUrl仓库地址)
 13 git push -u origin master(开始推送，把当前master分支推送到远程)（后面提交则可以不用-u 参数 也就是 git push origin master）
 14 git clone gitUrl(远程拉取数据)
+15 git checkout brunchname 切换分支
 
 
 查看当前用户的信息
