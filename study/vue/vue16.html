@@ -1,0 +1,70 @@
+<!DOCTYPE>
+<html>
+<head>
+    <title>Vue</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="example1">
+    <input v-on:keyup.enter="submit">
+</div>
+
+<div id="example2">
+    <!--文本框-->
+    <input v-model="message" placeholder="edit me">
+    <p>Message is : {{ message }}</p>
+    <!--多行文本框-->
+    <span>Multiple message is :</span>
+    <p style="white-space: pre-line;">{{ desc }}</p>
+    <br>
+    <textarea v-model="desc" placeholder="add multiple lines"></textarea>
+    <br>
+    <!--单选框-->
+    <input type="checkbox" id="checkbox" v-model="checked">
+    <label for="checkbox">{{ checked }}</label>
+
+    <div id="example3">
+        <input type="checkbox" name="Java" value="java" id="java" v-model="checkBook">
+        <label for="java">Java</label>
+        <input type="checkbox" name="Python" value="" id="python" v-model="checkBook">
+        <label for="python">Python</label>
+        <input type="checkbox" name="C" id="c" v-model="checkBook">
+        <label for="c">C</label>
+        <span>Checked Books: {{ checkBook }}</span>
+    </div>
+    <!--复选框-->
+</div>
+
+<p></p>
+
+</body>
+<script>
+    var example1 = new Vue({
+        el: '#example1',
+        data: {
+            count: 0
+        },
+        methods: {
+            submit() {
+                alert("this is submit 1");
+                console.log("aaaa");
+            },
+        },
+    });
+
+    var example2 = new Vue({
+        el: '#example2',
+        data: {
+            message: 'Hello World',
+            desc: '',
+            checked: true,
+            checkBook: [],
+        },
+        methods:{
+        }
+    });
+
+</script>
+</html>
